@@ -6,8 +6,9 @@ USE FoodSearch;
 
 DROP TABLE IF EXISTS dbo.Customer;
 CREATE TABLE Customer (
-	Username varChar(25) PRIMARY KEY,
+	UserId varChar(25) PRIMARY KEY,
 	PasswordHash varChar(64) NOT NULL,
+	Birthdate date NOT NULL,
 	Fname varChar(25) NOT NULL,
 	Lname varChar(25) NOT NULL
 );
@@ -17,7 +18,7 @@ CREATE TABLE Party (
 	PartyID int NOT NULL,
 	Username varChar(25) NOT NULL,
 	PRIMARY KEY (PartyID, Username),
-	FOREIGN KEY (Username) REFERENCES Customer (Username)
+	FOREIGN KEY (Username) REFERENCES Customer (UserId)
 		ON DELETE CASCADE	ON UPDATE CASCADE
 );
 
@@ -32,6 +33,7 @@ CREATE TABLE StreetAddr (
 DROP TABLE IF EXISTS dbo.Restaurant;
 CREATE TABLE Restaurant (
 	RestID int PRIMARY KEY,
+	RestName varChar(140) NOT NULL,
 	AddressID int NOT NULL,
 	Rating int DEFAULT 1, 
 	FOREIGN KEY (AddressID) REFERENCES StreetAddr (AddressID)
@@ -89,13 +91,41 @@ CREATE TABLE Reviews (
 	PRIMARY KEY (Username, RestID),
 	FOREIGN KEY (RestID) REFERENCES Restaurant (RestID)
 		ON DELETE CASCADE	ON UPDATE CASCADE,
-	FOREIGN KEY (Username) REFERENCES Customer (Username)
+	FOREIGN KEY (Username) REFERENCES Customer (UserId)
 		ON DELETE CASCADE	ON UPDATE CASCADE,
 
 	CONSTRAINT CHK_review CHECK (
 		CleanlinessR IS NOT NULL OR 
 		FoodR IS NOT NULL OR 
 		ServiceR IS NOT NULL OR 
-		ValueR IS NOT NULL)
+		ValueR IS NOT NULL
+	)
+);
+
+DROP TABLE IF EXISTS dbo.Allergens
+CREATE TABLE Allergens (
+	ID int PRIMARY KEY,
+	Allergen varChar(25)
+);
+
+DROP TABLE IF EXISTS dbo.Allergies
+CREATE TABLE Allergies (
+	AllergenID int NOT NULL,
+	UserID varChar(25) NOT NULL,
+	Severity int DEFAULT 5,
+	Sensitivity int DEFAULT 5,
+	FOREIGN KEY (UserID) REFERENCES Customer (UserID),
+	FOREIGN KEY (AllergenID) REFERENCES Allergens (ID),
+	CONSTRAINT CHK_Severity CHECK (Severity >= 1 AND Severity <= 5),
+	CONSTRAINT CHK_Sensitivity CHECK (Sensitivity >= 1 AND Sensitivity <= 5)
+)
+
+DROP TABLE IF EXISTS dbo.XContamination
+CREATE TABLE XContamination (
+	AllergenID int NOT NULL,
+	RestID int NOT NULL,
+	PRIMARY KEY (AllergenID, RestID),
+	FOREIGN KEY (AllergenID) REFERENCES Allergens (ID),
+	FOREIGN KEY (RestID) REFERENCES Restaurant (RestID)
 );
 -- Work in progress
