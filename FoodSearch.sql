@@ -226,6 +226,8 @@ INSERT INTO CuisineType VALUES (10, 'Dessert');
 INSERT INTO CuisineType VALUES (11, 'Mexican');
 INSERT INTO CuisineType VALUES (12, 'Jamaican');
 INSERT INTO CuisineType VALUES (13, 'Brunch');
+INSERT INTO CuisineType VALUES (14, 'Ethiopian');
+INSERT INTO CuisineType VALUES (15, 'Egyptian');
 
 --	TABLE: Cuisine
 --		CuisineId int NOT NULL,
@@ -269,6 +271,8 @@ INSERT INTO Allergens VALUES (7, 'Nut');
 INSERT INTO Allergens VALUES (8, 'Sesame');
 INSERT INTO Allergens VALUES (9, 'Shellfish');
 INSERT INTO Allergens VALUES (10, 'Wheat');
+INSERT INTO Allergens VALUES (11, 'Cheez');
+INSERT INTO Allergens VALUES (12, 'Beans');
 
 --	TABLE: Allergies
 --		AllergenId int NOT NULL,
