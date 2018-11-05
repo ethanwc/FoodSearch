@@ -74,7 +74,6 @@ WHERE R.RestId = Reviews.RestId
 ORDER BY Total DESC;
 
 -- Query Ten: Search Database for specific food item
--- TODO
-SELECT 
-FROM Restaurant R, Menu Mu, MenuItem Mi
-WHERE 
+SELECT Mi.ItemName
+FROM MenuItem Mi
+WHERE Mi.ItemName LIKE 'Tacos%';
