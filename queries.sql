@@ -23,9 +23,14 @@ WHERE RestId = ANY (
 
 
 -- Query Three: A correlated nested query
--- Retrieves user's preferences in order to display releveant results.
--- Expects a list of the user's preferences.
--- ????????????????
+-- Display the customers with above average budgets
+SELECT c.DisplayName, pref.maxPrice
+FROM Customer c, Party p, Preferences pref
+WHERE c.UserId = pref.UserId AND pref.UserId = p.UserId AND pref.maxPrice > (
+    SELECT AVG(pref2.maxPrice)
+    FROM Preferences pref2, Party p2
+    WHERE p.PartyId = p2.PartyId);
+
 
 -- Query Four: Uses a FULL JOIN
 -- Used to display a specific user's rating information on a 'review' section of a specific restaurant.
@@ -97,6 +102,7 @@ WHERE Mi.ItemName LIKE 'El Diablo Azul%';
 SELECT Mi.price
 FROM MenuItemId Mi
 WHERE Mi.MenuItemId = '1';
+
 
 -- Query Twelve:
 -- Search by price, instead of name
