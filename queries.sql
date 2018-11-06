@@ -8,18 +8,15 @@ INNER JOIN Allergies ON Customer.UserId = Allergies.UserId;
 
 
 -- Query Two: Uses nested queries with the ANY or ALL operator and uses a GROUP BY clause
--- User searches by location (state).
+-- User searches by Locations (state).
 -- Expects a list of all Restaurants in Washington.
 SELECT RestName
 FROM Restaurant
 WHERE RestId = ANY (
 	SELECT RestId
 	FROM Locations
-	WHERE AddressID = ANY (
-		SELECT AddressID
-		FROM StreetAddr
-		WHERE StateId = 'WA'))
-		GROUP BY RestId;
+	WHERE StateId = 'WA')
+	GROUP BY RestId;
 
 
 -- Query Three: A correlated nested query
