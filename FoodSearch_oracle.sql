@@ -135,7 +135,7 @@ CREATE TABLE Preferences (
 );
 
 
---  TABLE: Customers
+--  TABLE: c
 --		UserId varChar(25) PRIMARY KEY
 --		PasswordHash varChar(64) NOT NULL,
 --		DisplayName varChar(60)
@@ -158,6 +158,8 @@ INSERT INTO Party VALUES (1, 'farisa');
 --		Zipcode int NOT NULL,
 --		StateId varChar(2) NOT NULL
 INSERT INTO StreetAddr VALUES (1 ,'523 Broadway E', '98102', 'WA');
+INSERT INTO StreetAddr VALUES (2 ,'17340 32nd Ave S', '98188', 'WA');
+INSERT INTO StreetAddr VALUES (3 ,'1000 2nd Ave ', '98101', 'WA');
 
 --	TABLE: Restaurant
 --		RestId int PRIMARY KEY,
