@@ -281,6 +281,8 @@ INSERT INTO FoodAllergens VALUES (10, 1);
 --		FOREIGN KEY (UserId) REFERENCES Customer (UserId),
 --		FOREIGN KEY (CuisineId) REFERENCES CuisineType (CuisineId)
 INSERT INTO Preferences VALUES (1, 'lichtyj', 20.00, 11);
+INSERT INTO Preferences VALUES (2, 'cheathame', 10.00, 4);
+
 
 
 
