@@ -6,8 +6,8 @@ USE FoodSearch;
 
 DROP TABLE IF EXISTS dbo.Customer;
 CREATE TABLE Customer (
-	/* TODO: Add int ID */
-	UserId varChar(25) PRIMARY KEY,
+	UserId int PRIMARY KEY,
+	Username varChar(25),
 	PasswordHash varChar(64) NOT NULL,
 	DisplayName varChar(60)
 );
@@ -15,9 +15,9 @@ CREATE TABLE Customer (
 DROP TABLE IF EXISTS dbo.Party;
 CREATE TABLE Party (
 	PartyId int NOT NULL,
-	Username varChar(25) NOT NULL,
-	PRIMARY KEY (PartyId, Username),
-	FOREIGN KEY (Username) REFERENCES Customer (UserId)
+	UserId int NOT NULL,
+	PRIMARY KEY (PartyId, UserId),
+	FOREIGN KEY (UserId) REFERENCES Customer (UserId)
 		ON DELETE CASCADE	ON UPDATE CASCADE
 );
 
@@ -95,7 +95,7 @@ CREATE TABLE Cuisine (
 
 DROP TABLE IF EXISTS dbo.Reviews
 CREATE TABLE Reviews (
-	Username varChar(25),
+	UserId int,
 	RestId int NOT NULL,
 	CleanlinessR int,
 	CleanlinessNote varChar(240),
@@ -105,10 +105,10 @@ CREATE TABLE Reviews (
 	ServiceNote varChar(240),
 	ValueR int, 
 	ValueNote varChar(240),
-	PRIMARY KEY (Username, RestID),
+	PRIMARY KEY (UserId, RestID),
 	FOREIGN KEY (RestId) REFERENCES Restaurant (RestId)
 		ON DELETE CASCADE	ON UPDATE CASCADE,
-	FOREIGN KEY (Username) REFERENCES Customer (UserId)
+	FOREIGN KEY (UserId) REFERENCES Customer (UserId)
 		ON DELETE CASCADE	ON UPDATE CASCADE,
 
 	CONSTRAINT CHK_review CHECK (
@@ -127,7 +127,7 @@ CREATE TABLE Allergens (
 DROP TABLE IF EXISTS dbo.Allergies
 CREATE TABLE Allergies (
 	AllergenId int NOT NULL,
-	UserId varChar(25) NOT NULL,
+	UserId int NOT NULL,
 	Severity int DEFAULT 5,
 	Sensitivity int DEFAULT 5,
 	FOREIGN KEY (UserId) REFERENCES Customer (UserId)
@@ -154,7 +154,7 @@ CREATE TABLE FoodAllergens (
 DROP TABLE IF EXISTS dbo.Preferences
 CREATE TABLE Preferences (
 	PrefId int PRIMARY KEY,
-	UserId varChar(25) NOT NULL,
+	UserId int NOT NULL,
 	maxPrice decimal(6,2),
 	CuisineId int,
 	FOREIGN KEY (UserId) REFERENCES Customer (UserId)
