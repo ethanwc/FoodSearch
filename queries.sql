@@ -18,7 +18,8 @@ WHERE RestId = ANY (
 	WHERE AddressID = ANY (
 		SELECT AddressID
 		FROM StreetAddr
-		WHERE StateId = 'WA'));
+		WHERE StateId = 'WA'))
+		GROUP BY RestId;
 
 
 -- Query Three: A correlated nested query
@@ -36,12 +37,12 @@ ORDER BY Customer.DisplayName;
 
 
 -- Query Five: Uses nested queries with any of the set operations UNION, EXCEPT, or INTERSECT
--- Used to determine what users might be interested in a certain menu item.
+-- Determines what users are willing to spend x amount of money on an item.
 -- Expects a list of Customers that have a max price > $5.00
 SELECT  C.UserId
 FROM Customer C INTERSECT (
-SELECT C.UserId
-FROM Customer C, Preferences P
+SELECT P.UserId
+FROM Preferences P
 WHERE P.maxPrice > 5.00);
 
 
@@ -74,8 +75,8 @@ WHERE R.RestId = '1';
 
 
 -- Query Nine: 
--- Retrieve restaurants ordered by specified star type (cleanliness/food/service/value)
--- Returns all restaurants ranked from best to worst.
+-- Browse ALL Restaurants based on rating (descending).
+-- Retrieve price of a menu item.
 SELECT R.RestName, (Re.CleanlinessR + Re.FoodR + Re.ServiceR + Re.ValueR)/4 as Total
 FROM Restaurant R, Reviews Re
 WHERE R.RestId = Re.RestId
@@ -88,3 +89,18 @@ ORDER BY Total DESC;
 SELECT Mi.ItemName
 FROM MenuItem Mi
 WHERE Mi.ItemName LIKE 'El Diablo Azul%';
+
+
+-- Query Eleven:
+-- Retrieve the price of a specified menu item.
+-- Returns a the price of menu item.
+SELECT Mi.price
+FROM MenuItemId Mi
+WHERE Mi.MenuItemId = '1';
+
+-- Query Twelve:
+-- Search by price, instead of name
+-- Returns all menu items that are <= specified price.
+SELECT Mi.ItemName
+FROM MenuItem Mi
+WHERE Mi.price <= 6.00;
