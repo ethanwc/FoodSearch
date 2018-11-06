@@ -21,14 +21,6 @@ CREATE TABLE Party (
 		ON DELETE CASCADE	ON UPDATE CASCADE
 );
 
-DROP TABLE IF EXISTS dbo.StreetAddr;
-CREATE TABLE StreetAddr (
-	AddressId int PRIMARY KEY,
-	StreetAddr varChar(255) NOT NULL,
-	Zipcode int NOT NULL,
-	StateId varChar(2) NOT NULL
-);
-
 DROP TABLE IF EXISTS dbo.Restaurant;
 CREATE TABLE Restaurant (
 	RestId int PRIMARY KEY,
@@ -39,11 +31,11 @@ CREATE TABLE Restaurant (
 
 DROP TABLE IF EXISTS dbo.Locations;
 CREATE TABLE Locations (
-	AddressId int NOT NULL,
+	LocationId int PRIMARY KEY,
 	RestId int NOT NULL,
-	PRIMARY KEY (AddressId, RestId),
-	FOREIGN KEY (AddressId) REFERENCES StreetAddr (AddressId)
-		ON DELETE CASCADE	ON UPDATE CASCADE,
+	StreetAddr varChar(255) NOT NULL,
+	Zipcode int NOT NULL,
+	StateId varChar(2) NOT NULL,
 	FOREIGN KEY (RestId) REFERENCES Restaurant (RestId)
 		ON DELETE CASCADE	ON UPDATE CASCADE
 );
