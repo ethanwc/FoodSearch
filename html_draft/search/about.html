@@ -13,6 +13,7 @@
             </ul>
         </div>
     </nav>
+    <p>todo</p>
     <style>
         .img_rotate {
             transform-origin: 50% 50%;
@@ -86,72 +87,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script>
-            function search(request) {}
-
-            function request() {
-                var express = require('express');
-                var mysql = require('mysql');
-                var app = express();
-
-                var connection = mysql.createConnection({
-                    // properties
-                    host: 'localhost',
-                    user: 'root',
-                    password: 'foodsearch',
-                    database: 'information_schema'
-                });
-
-                connection.connect(function() {
-                    if (!!error) {
-                        console.log('Error');
-                    } else {
-                        console.log('Connected');
-                    }
-                });
-
-                app.get('/', function(req, resp) {
-                    connection.query("SELECT * FROM Character_sets", function(error, rows, fields) {
-                        if (!!error) {
-                            console.log('Error');
-                        } else {
-                            console.log('Successful query');
-                            // parse rows, fields
-                        }
-                    });
-                })
-            }
-
-        </script>
-        <div class="row">
-            <div class="col-md-2 col-md-offset-5" style="background: white; border-color: white">
-                <center><img src="icon.png"></center>
-            </div>
-        </div>
-        <div class="row">
-            <center>
-                <h1>Food Search</h1>
-            </center>
-
-            <div class="col-xs-4 col-xs-offset-4" style="background: white; border-color: white">
-                <div style="white-space:nowrap;">
-                    <input class="form-control" id="search" type="text" placeholder="Search" aria-label="Search">
-                    <button class="invisible" display="inline-block" id="search_btn" onclick="search()">Search</button>
-                </div>
-
-            </div>
-        </div>
+        
+        
     </head>
-    <script>
-        var input = document.getElementById("Search");
-        input.addEventListener("keyup", function(event) {
-            event.preventDefault();
-            if (event.keyCode === 13) {
-                document.getElementById("search_btn").click();
-            }
-        });
-
-    </script>
+   
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
 
 
@@ -165,30 +104,6 @@
 
     </script>
 
-    <div class="container-fluid">
-        <div class="row row-eq-height" id="results">
-        </div>
-    </div>
-    <script>
-        item = 'Deluxe Cheeseburger';
-        restaurant = 'Blazing Onion';
-        price = '$12.99';
-        image = 'hamburger.jpg';
-
-        res1 = '<div class="col-md-3 b" style="background: white; border-color: white"><div class="div_data"><center><div><h4>'
-        res2 = '</h4><p>';
-        res3 = '</p><p2>';
-        res4 = '</p2><br></div><img src="';
-        res5 = '"></center></div></div>'
-        final = res1 + item + res2 + restaurant + res3 + price + res4 + image + res5;
-
-        //TODO: for loop add all items based on sql result.
-
-        for (var i = 0; i < 30; i++)
-
-            $('#results').append(final);
-
-    </script>
 </body>
 
 </html>
