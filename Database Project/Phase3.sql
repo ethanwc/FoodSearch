@@ -10,12 +10,6 @@ CREATION SCRIPT
 //////////////////////////////////////////////////////////////////////////////////
 */
 
-USE master;
-DROP DATABASE IF EXISTS FoodSearch;
-CREATE DATABASE FoodSearch;
-GO
-USE FoodSearch;
-
 DROP TABLE IF EXISTS dbo.Customer;
 CREATE TABLE Customer (
 	Username varChar(25) PRIMARY KEY,
@@ -147,7 +141,6 @@ POPULATE
 //////////////////////////////////////////////////////////////////////////////////
 */
 
-USE FoodSearch;
 
 INSERT INTO Customer VALUES ('lichtyj', 'password', 'Josh');
 INSERT INTO Customer VALUES ('cheathame', 'password', 'Ethan');
@@ -180,18 +173,18 @@ INSERT INTO Restaurant VALUES (6, 'Stanley and Seaforts', 3);
 INSERT INTO Restaurant VALUES (7, 'The Matador', 2);
 INSERT INTO Restaurant VALUES (8, 'El Gaucho Tacoma', 4);
 INSERT INTO Restaurant VALUES (9, 'Asado Restaurant', 3);
-INSERT INTO Restaurant VALUES (10, 'Happy Teriyaki', 2);;
+INSERT INTO Restaurant VALUES (10, 'Happy Teriyaki', 2);
 
-INSERT INTO Locations VALUES (1, 1,'523 Broadway E', '98102', 'WA');
-INSERT INTO Locations VALUES (2, 2,'3529 McKinley Avenue', '981404', 'WA');
-INSERT INTO Locations VALUES (3, 3,'1502 Pacific Ave', '98402', 'WA');
-INSERT INTO Locations VALUES (4, 4, '1199 Dock St', '98402', 'WA');
-INSERT INTO Locations VALUES (5, 5, '1250 Pacific Ave #101', '98402', 'WA');
-INSERT INTO Locations VALUES (6, 6, '115 E 34th St', '98404', 'WA');
-INSERT INTO Locations VALUES (7, 7, '721 Pacific Ave', '98402', 'WA');
-INSERT INTO Locations VALUES (8, 8, '2119 Pacific Ave', '98402', 'WA');
-INSERT INTO Locations VALUES (9, 9, '2810 6th Ave', '98406', 'WA');
-INSERT INTO Locations VALUES (10, 10, '2223 Pacific Ave', '98402', 'WA');
+INSERT INTO Locations VALUES (1, 1,'523 Broadway E', '98102');
+INSERT INTO Locations VALUES (2, 2,'3529 McKinley Avenue', '981404');
+INSERT INTO Locations VALUES (3, 3,'1502 Pacific Ave', '98402');
+INSERT INTO Locations VALUES (4, 4, '1199 Dock St', '98402');
+INSERT INTO Locations VALUES (5, 5, '1250 Pacific Ave #101', '98402');
+INSERT INTO Locations VALUES (6, 6, '115 E 34th St', '98404');
+INSERT INTO Locations VALUES (7, 7, '721 Pacific Ave', '98402');
+INSERT INTO Locations VALUES (8, 8, '2119 Pacific Ave', '98402');
+INSERT INTO Locations VALUES (9, 9, '2810 6th Ave', '98406');
+INSERT INTO Locations VALUES (10, 10, '2223 Pacific Ave', '98402');
 
 INSERT INTO Menu VALUES (1, 1, NULL, NULL, NULL);
 INSERT INTO Menu VALUES (2, 2, NULL, NULL, NULL);
@@ -205,7 +198,7 @@ INSERT INTO Menu VALUES (9, 9, 'Dinner', NULL, NULL);
 INSERT INTO Menu VALUES (10, 10, NULL, NULL, NULL);
 
 INSERT INTO MenuItem VALUES (1, 1, 'El Diablo Azul', 'cayenne and cumin seasoning topped with fresh jalapenos, pepper jack cheese and our spicy buffalo sauce. fresh lettuce, red onion, tomato, on a ciabatta bun', NULL, NULL);
-INSERT INTO MenuItem VALUES (2, 2, 'T-Town Grinder', 'Turkey, salami, ham, Swiss and cheddar baked on a fresh herb roll topped with lettuce, tomato, pepperoncini, red onion and Top’s sub sauce ', NULL, 10.25);
+INSERT INTO MenuItem VALUES (2, 2, 'T-Town Grinder', 'Turkey, salami, ham, Swiss and cheddar baked on a fresh herb roll topped with lettuce, tomato, pepperoncini, red onion and TopÂ’s sub sauce ', NULL, 10.25);
 INSERT INTO MenuItem VALUES (3, 3, 'Duck Confit', 'crisp duck leg confit w/ roasted parsnips, acorn squash, sweet potato, young kale, garam masala + pomegranate-cassis sauce ', NULL, 32.00);
 INSERT INTO MenuItem VALUES (4, 4, 'SEAFOOD NACHOS', 'Bay shrimp, crab, lobster, pico de gallo, cheddar jack cheese', NULL, 14.95);
 INSERT INTO MenuItem VALUES (5, 5, 'Chicken Caesar Salad', NULL, 400, 5.99);
@@ -260,16 +253,16 @@ INSERT INTO Allergens VALUES ('Fish', 8);
 INSERT INTO Allergens VALUES ('Wheat', 8);
 INSERT INTO Allergens VALUES ('Soybean', 10);
 
-INSERT INTO Preferences VALUES ('lichtyj', 1, 20.00, 11);
-INSERT INTO Preferences VALUES ('cheathame', 2, 10.00, 4);
-INSERT INTO Preferences VALUES ('farisa', 3, 30.00, 3);
-INSERT INTO Preferences VALUES ('joe', 4, 19.99, 2);
-INSERT INTO Preferences VALUES ('bob', 5, 200.01, 6); 
-INSERT INTO Preferences VALUES ('jack', 6, 50.00, 8);
-INSERT INTO Preferences VALUES ('steve', 7, 10.00, 9);
-INSERT INTO Preferences VALUES ('jose', 8, 600.00, 10);
-INSERT INTO Preferences VALUES ('frank', 9, 100.00, 1);
-INSERT INTO Preferences VALUES ('username', 1, 10.00, 3); 
+INSERT INTO Preferences VALUES ('lichtyj', 'Tacos', 12.00);
+INSERT INTO Preferences VALUES ('lichtyj', 'Pizza', 20.00);
+INSERT INTO Preferences VALUES ('lichtyj', 'Salad', 9.99);
+INSERT INTO Preferences VALUES ('cheathame', 'Waffles', 11.00);
+INSERT INTO Preferences VALUES ('cheathame', 'Spaghetti', 16.99);
+INSERT INTO Preferences VALUES ('cheathame', 'Soup', 9.99);
+INSERT INTO Preferences VALUES ('farisa', 'Nuggets', 5.00);
+INSERT INTO Preferences VALUES ('farisa', 'Cake', 11.25);
+INSERT INTO Preferences VALUES ('farisa', 'French dip', 5.00);
+INSERT INTO Preferences VALUES ('farisa', 'Fish and Chips', 20.00);
 
 /*
 //////////////////////////////////////////////////////////////////////////////////

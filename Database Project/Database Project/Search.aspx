@@ -119,7 +119,7 @@
                     </table>
                 </EmptyDataTemplate>
                 <EmptyItemTemplate>
-<td runat="server" />
+            <td runat="server" />
                 </EmptyItemTemplate>
                 <GroupTemplate>
                     <tr id="itemPlaceholderContainer" runat="server">
