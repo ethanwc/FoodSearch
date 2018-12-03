@@ -4,8 +4,16 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a href="Search.aspx">Search</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="stats.html">Stats</a></li>
+                <li><a href="Reviews.aspx">Reviews</a></li>
+            </ul>
+        </div>
+    </nav>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://getbootstrap.com.vn/examples/equal-height-columns/equal-height-columns.css" />
 
@@ -76,121 +84,24 @@
         </asp:SqlDataSource>
  
         <div class="col-xs-12" style="background: white; border-color: white" align="center">
-            <asp:ListView ID="ListView1" runat="server" DataKeyNames="MenuItemId" DataSourceID="SqlDataSource1" GroupItemCount="3">
-                <AlternatingItemTemplate>
-                    <td runat="server" style="background-color:#FFF8DC;">MenuItemId:
-                        <asp:Label ID="MenuItemIdLabel" runat="server" Text='<%# Eval("MenuItemId") %>' />
-                        <br />MenuId:
-                        <asp:Label ID="MenuIdLabel" runat="server" Text='<%# Eval("MenuId") %>' />
-                        <br />ItemName:
-                        <asp:Label ID="ItemNameLabel" runat="server" Text='<%# Eval("ItemName") %>' />
-                        <br />ItemDescription:
-                        <asp:Label ID="ItemDescriptionLabel" runat="server" Text='<%# Eval("ItemDescription") %>' />
-                        <br />Calories:
-                        <asp:Label ID="CaloriesLabel" runat="server" Text='<%# Eval("Calories") %>' />
-                        <br />Price:
-                        <asp:Label ID="PriceLabel" runat="server" Text='<%# Eval("Price") %>' />
-                        <br /></td>
-                </AlternatingItemTemplate>
-                <EditItemTemplate>
-                    <td runat="server" style="background-color:#008A8C;color: #FFFFFF;">MenuItemId:
-                        <asp:Label ID="MenuItemIdLabel1" runat="server" Text='<%# Eval("MenuItemId") %>' />
-                        <br />MenuId:
-                        <asp:TextBox ID="MenuIdTextBox" runat="server" Text='<%# Bind("MenuId") %>' />
-                        <br />ItemName:
-                        <asp:TextBox ID="ItemNameTextBox" runat="server" Text='<%# Bind("ItemName") %>' />
-                        <br />ItemDescription:
-                        <asp:TextBox ID="ItemDescriptionTextBox" runat="server" Text='<%# Bind("ItemDescription") %>' />
-                        <br />Calories:
-                        <asp:TextBox ID="CaloriesTextBox" runat="server" Text='<%# Bind("Calories") %>' />
-                        <br />Price:
-                        <asp:TextBox ID="PriceTextBox" runat="server" Text='<%# Bind("Price") %>' />
-                        <br />
-                        <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="Update" />
-                        <br />
-                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" />
-                        <br /></td>
-                </EditItemTemplate>
-                <EmptyDataTemplate>
-                    <table runat="server" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;">
-                        <tr>
-                            <td>No data was returned.</td>
-                        </tr>
-                    </table>
-                </EmptyDataTemplate>
-                <EmptyItemTemplate>
-            <td runat="server" />
-                </EmptyItemTemplate>
-                <GroupTemplate>
-                    <tr id="itemPlaceholderContainer" runat="server">
-                        <td id="itemPlaceholder" runat="server"></td>
-                    </tr>
-                </GroupTemplate>
-                <InsertItemTemplate>
-                    <td runat="server" style="">MenuItemId:
-                        <asp:TextBox ID="MenuItemIdTextBox" runat="server" Text='<%# Bind("MenuItemId") %>' />
-                        <br />MenuId:
-                        <asp:TextBox ID="MenuIdTextBox" runat="server" Text='<%# Bind("MenuId") %>' />
-                        <br />ItemName:
-                        <asp:TextBox ID="ItemNameTextBox" runat="server" Text='<%# Bind("ItemName") %>' />
-                        <br />ItemDescription:
-                        <asp:TextBox ID="ItemDescriptionTextBox" runat="server" Text='<%# Bind("ItemDescription") %>' />
-                        <br />Calories:
-                        <asp:TextBox ID="CaloriesTextBox" runat="server" Text='<%# Bind("Calories") %>' />
-                        <br />Price:
-                        <asp:TextBox ID="PriceTextBox" runat="server" Text='<%# Bind("Price") %>' />
-                        <br />
-                        <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" />
-                        <br />
-                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Clear" />
-                        <br /></td>
-                </InsertItemTemplate>
-                <ItemTemplate>
-                    <td runat="server" style="background-color:#DCDCDC;color: #000000;">MenuItemId:
-                        <asp:Label ID="MenuItemIdLabel" runat="server" Text='<%# Eval("MenuItemId") %>' />
-                        <br />MenuId:
-                        <asp:Label ID="MenuIdLabel" runat="server" Text='<%# Eval("MenuId") %>' />
-                        <br />ItemName:
-                        <asp:Label ID="ItemNameLabel" runat="server" Text='<%# Eval("ItemName") %>' />
-                        <br />ItemDescription:
-                        <asp:Label ID="ItemDescriptionLabel" runat="server" Text='<%# Eval("ItemDescription") %>' />
-                        <br />Calories:
-                        <asp:Label ID="CaloriesLabel" runat="server" Text='<%# Eval("Calories") %>' />
-                        <br />Price:
-                        <asp:Label ID="PriceLabel" runat="server" Text='<%# Eval("Price") %>' />
-                        <br /></td>
-                </ItemTemplate>
-                <LayoutTemplate>
-                    <table runat="server">
-                        <tr runat="server">
-                            <td runat="server">
-                                <table id="groupPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
-                                    <tr id="groupPlaceholder" runat="server">
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr runat="server">
-                            <td runat="server" style="text-align: center;background-color: #CCCCCC;font-family: Verdana, Arial, Helvetica, sans-serif;color: #000000;"></td>
-                        </tr>
-                    </table>
-                </LayoutTemplate>
-                <SelectedItemTemplate>
-                    <td runat="server" style="background-color:#008A8C;font-weight: bold;color: #FFFFFF;">MenuItemId:
-                        <asp:Label ID="MenuItemIdLabel" runat="server" Text='<%# Eval("MenuItemId") %>' />
-                        <br />MenuId:
-                        <asp:Label ID="MenuIdLabel" runat="server" Text='<%# Eval("MenuId") %>' />
-                        <br />ItemName:
-                        <asp:Label ID="ItemNameLabel" runat="server" Text='<%# Eval("ItemName") %>' />
-                        <br />ItemDescription:
-                        <asp:Label ID="ItemDescriptionLabel" runat="server" Text='<%# Eval("ItemDescription") %>' />
-                        <br />Calories:
-                        <asp:Label ID="CaloriesLabel" runat="server" Text='<%# Eval("Calories") %>' />
-                        <br />Price:
-                        <asp:Label ID="PriceLabel" runat="server" Text='<%# Eval("Price") %>' />
-                        <br /></td>
-                </SelectedItemTemplate>
-            </asp:ListView>
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataKeyNames="MenuItemId" DataSourceID="SqlDataSource1" ForeColor="Black" GridLines="Horizontal">
+                <Columns>
+                    <asp:BoundField DataField="MenuItemId" HeaderText="MenuItemId" ReadOnly="True" SortExpression="MenuItemId" />
+                    <asp:BoundField DataField="MenuId" HeaderText="MenuId" SortExpression="MenuId" />
+                    <asp:BoundField DataField="ItemName" HeaderText="ItemName" SortExpression="ItemName" />
+                    <asp:BoundField DataField="ItemDescription" HeaderText="ItemDescription" SortExpression="ItemDescription" />
+                    <asp:BoundField DataField="Calories" HeaderText="Calories" SortExpression="Calories" />
+                    <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
+                </Columns>
+                <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                <SortedDescendingHeaderStyle BackColor="#242121" />
+            </asp:GridView>
         </div>
     </form>
     </body>

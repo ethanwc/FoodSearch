@@ -22,9 +22,10 @@ public partial class Reviews : System.Web.UI.Page
     {
         //todo: set 'lichtyj' to current username
         //todo: get restID from the dropdown menu... use: " + DropDownList2.Text + "?
-        SqlCommand cmd = new SqlCommand("insert into reviews values('lichtyj', '4', '" + DropDownList6.Text + "', '" + TextBox1.Text + "'," +
-            " '" + DropDownList7.Text + "', '" + TextBox2.Text + "', '" + DropDownList8.Text + "', '" + TextBox3.Text + "', " +
-            "'" + DropDownList9.Text + "', '" + TextBox7.Text + "')", con);
+        SqlCommand cmd = new SqlCommand("insert into reviews values('lichtyj', '" + DropDownList2.SelectedValue
++ "', '" + CleanRating.Text + "', '" + CleanNote.Text + "'," +
+            " '" + FoodRating.Text + "', '" + ValueNote.Text + "', '" + ServiceRating.Text + "', '" + ServiceNote.Text + "', " +
+            "'" + ValueRating.Text + "', '" + FoodNote.Text + "')", con);
 
         cmd.ExecuteNonQuery();
         con.Close();
@@ -59,6 +60,11 @@ public partial class Reviews : System.Web.UI.Page
     }
 
     protected void TextBox5_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void TextBox4_TextChanged1(object sender, EventArgs e)
     {
 
     }
