@@ -20,17 +20,18 @@ public partial class Reviews : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        //todo: set 'lichtyj' to current username
-        //todo: get restID from the dropdown menu... use: " + DropDownList2.Text + "?
-        SqlCommand cmd = new SqlCommand("insert into reviews values('lichtyj', '" + DropDownList2.SelectedValue
+        if (Context.User.Identity.IsAuthenticated)
+        {
+            SqlCommand cmd = new SqlCommand("insert into reviews values('" + Context.User.Identity.Name + "', '" + DropDownList2.SelectedValue
 + "', '" + CleanRating.Text + "', '" + CleanNote.Text + "'," +
-            " '" + FoodRating.Text + "', '" + ValueNote.Text + "', '" + ServiceRating.Text + "', '" + ServiceNote.Text + "', " +
-            "'" + ValueRating.Text + "', '" + FoodNote.Text + "')", con);
+      " '" + FoodRating.Text + "', '" + ValueNote.Text + "', '" + ServiceRating.Text + "', '" + ServiceNote.Text + "', " +
+      "'" + ValueRating.Text + "', '" + FoodNote.Text + "')", con);
+            cmd.ExecuteNonQuery();
+            button_submitreview.Visible = false;
+            Submitted.Visible = true;
+        }
 
-        cmd.ExecuteNonQuery();
-        con.Close();
-        button_submitreview.Visible = false;
-        Submitted.Visible = true;        
+        con.Close();            
     }
 
 
@@ -75,6 +76,11 @@ public partial class Reviews : System.Web.UI.Page
     }
 
     protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void ListBox1_SelectedIndexChanged1(object sender, EventArgs e)
     {
 
     }

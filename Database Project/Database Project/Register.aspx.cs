@@ -21,7 +21,7 @@ public partial class Default2 : System.Web.UI.Page {
     protected void register_submit_Click(object sender, EventArgs e) {
         if (IsPostBack) {
 
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["LoginString"].ConnectionString);
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             conn.Open();
             string cmdStr;
             SqlCommand cmd;

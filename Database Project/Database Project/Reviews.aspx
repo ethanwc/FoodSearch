@@ -7,9 +7,9 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
+                <li><a href="Login.aspx">Login</a></li>
                 <li><a href="Search.aspx">Search</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="stats.html">Stats</a></li>
                 <li><a href="Reviews.aspx">Reviews</a></li>
             </ul>
         </div>
@@ -30,6 +30,7 @@
     </div>
 </head>
 <body>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
 
 
@@ -100,6 +101,7 @@ ORDER BY Rating DESC;"></asp:SqlDataSource>
             <center>
                 <h1>Leave a review</h1>
                 <p>
+                    <asp:Label ID="label_restaurant_to_review" runat="server" Text="Pick a Restaurant:"></asp:Label>
             <asp:DropDownList ID="DropDownList2" runat="server" Height="16px" DataSourceID="SqlDataSource4" DataTextField="RestName" DataValueField="RestId">
             </asp:DropDownList>
             <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Restaurant]"></asp:SqlDataSource>
@@ -107,50 +109,50 @@ ORDER BY Rating DESC;"></asp:SqlDataSource>
             <asp:Label ID="CleanLabel" runat="server" Text="Cleanliness"></asp:Label>
                     </p>
             <p>
-                <asp:TextBox ID="CleanNote" runat="server" Height="80px" Width="400px" TextMode="MultiLine"></asp:TextBox>
-                <asp:DropDownList ID="CleanRating" runat="server" OnSelectedIndexChanged="DropDownList6_SelectedIndexChanged">
-                    <asp:ListItem Value="1">1</asp:ListItem>
+                <asp:TextBox ID="CleanNote" runat="server" Height="100px" Width="400px" TextMode="MultiLine"></asp:TextBox>
+                <asp:ListBox ID="CleanRating" runat="server" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged1" Height="100px">
+                        <asp:ListItem Value="1">1</asp:ListItem>
                     <asp:ListItem Value="2">2</asp:ListItem>
                     <asp:ListItem Value="3">3</asp:ListItem>
                     <asp:ListItem Value="4">4</asp:ListItem>
                     <asp:ListItem Value="5">5</asp:ListItem>
-                </asp:DropDownList>
+                </asp:ListBox>
             </p>
             <p>
             <asp:Label ID="FoodLabel" runat="server" Text="Food"></asp:Label>
                     </p>
-                <asp:TextBox ID="FoodNote" runat="server" Height="80px" Width="400px" TextMode="MultiLine"></asp:TextBox>
-                <asp:DropDownList ID="FoodRating" runat="server">
-                     <asp:ListItem Value="1">1</asp:ListItem>
+                <asp:TextBox ID="FoodNote" runat="server" Height="100px" Width="400px" TextMode="MultiLine"></asp:TextBox>
+                <asp:ListBox ID="FoodRating" runat="server" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged1" Height="100px">
+                        <asp:ListItem Value="1">1</asp:ListItem>
                     <asp:ListItem Value="2">2</asp:ListItem>
                     <asp:ListItem Value="3">3</asp:ListItem>
                     <asp:ListItem Value="4">4</asp:ListItem>
                     <asp:ListItem Value="5">5</asp:ListItem>
-                </asp:DropDownList>
+                </asp:ListBox>
                 <p>
             <asp:Label ID="ServiceLabel" runat="server" Text="Service"></asp:Label>
                     </p>
                 <p>
-                <asp:TextBox ID="ServiceNote" runat="server" Height="80px" Width="400px" TextMode="MultiLine"></asp:TextBox>
-                <asp:DropDownList ID="ServiceRating" runat="server">
-                     <asp:ListItem Value="1">1</asp:ListItem>
+                <asp:TextBox ID="ServiceNote" runat="server" Height="100px" Width="400px" TextMode="MultiLine"></asp:TextBox>
+                <asp:ListBox ID="ServiceRating" runat="server" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged1" Height="100px">
+                        <asp:ListItem Value="1">1</asp:ListItem>
                     <asp:ListItem Value="2">2</asp:ListItem>
                     <asp:ListItem Value="3">3</asp:ListItem>
                     <asp:ListItem Value="4">4</asp:ListItem>
                     <asp:ListItem Value="5">5</asp:ListItem>
-                </asp:DropDownList>
+                </asp:ListBox>
                 </p>
             <p>
                 <asp:Label ID="ValueLabel" runat="server" Text="Value"></asp:Label>
                     </p>
-                <asp:TextBox ID="ValueNote" runat="server" Height="80px" Width="400px" TextMode="MultiLine"></asp:TextBox>
-                <asp:DropDownList ID="ValueRating" runat="server">
-                     <asp:ListItem Value="1">1</asp:ListItem>
+                <asp:TextBox ID="ValueNote" runat="server" Height="100px" Width="400px" TextMode="MultiLine"></asp:TextBox>
+                <asp:ListBox ID="ValueRating" runat="server" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged1" Height="100px">
+                        <asp:ListItem Value="1">1</asp:ListItem>
                     <asp:ListItem Value="2">2</asp:ListItem>
                     <asp:ListItem Value="3">3</asp:ListItem>
                     <asp:ListItem Value="4">4</asp:ListItem>
                     <asp:ListItem Value="5">5</asp:ListItem>
-                </asp:DropDownList>
+                </asp:ListBox>
                 <br />
                 <p>
             <asp:TextBox ID="Submitted" runat="server" Visible="false" Text="Review Submitted" OnTextChanged="TextBox4_TextChanged"></asp:TextBox>

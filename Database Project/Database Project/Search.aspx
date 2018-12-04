@@ -7,9 +7,9 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
+                <li><a href="Login.aspx">Login</a></li>
                 <li><a href="Search.aspx">Search</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="stats.html">Stats</a></li>
                 <li><a href="Reviews.aspx">Reviews</a></li>
             </ul>
         </div>
