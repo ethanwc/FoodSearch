@@ -77,30 +77,36 @@
 
             <asp:Button class="invisible" ID="search_button" runat="server" OnClick="Button1_Click" Text="Search" />
         </p>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [MenuItem] WHERE ([ItemName] LIKE '%' + @ItemName + '%')">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT mi.ItemName as 'Item', r.RestName as 'Restaurant', mi.Calories, mi.Price, mi.ItemDescription as 'Description'
+FROM MenuItem mi, Restaurant r, Menu m
+WHERE ([ItemName] LIKE '%' + @ItemName + '%')
+AND r.RestId = M.MenuId 
+AND m.MenuId = mi.MenuId;
+">
             <SelectParameters>
                 <asp:ControlParameter ControlID="search_text" Name="ItemName" PropertyName="Text" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>
  
         <div class="col-xs-12" style="background: white; border-color: white" align="center">
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataKeyNames="MenuItemId" DataSourceID="SqlDataSource1" ForeColor="Black" GridLines="Horizontal">
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="Black" GridLines="Vertical">
+                <AlternatingRowStyle BackColor="White" />
                 <Columns>
-                    <asp:BoundField DataField="MenuItemId" HeaderText="MenuItemId" ReadOnly="True" SortExpression="MenuItemId" />
-                    <asp:BoundField DataField="MenuId" HeaderText="MenuId" SortExpression="MenuId" />
-                    <asp:BoundField DataField="ItemName" HeaderText="ItemName" SortExpression="ItemName" />
-                    <asp:BoundField DataField="ItemDescription" HeaderText="ItemDescription" SortExpression="ItemDescription" />
+                    <asp:BoundField DataField="Item" HeaderText="Item" SortExpression="Item" />
+                    <asp:BoundField DataField="Restaurant" HeaderText="Restaurant" SortExpression="Restaurant" />
                     <asp:BoundField DataField="Calories" HeaderText="Calories" SortExpression="Calories" />
                     <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
+                    <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
                 </Columns>
-                <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
-                <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
-                <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F7F7F7" />
-                <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-                <SortedDescendingCellStyle BackColor="#E5E5E5" />
-                <SortedDescendingHeaderStyle BackColor="#242121" />
+                <FooterStyle BackColor="#CCCC99" />
+                <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
+                <RowStyle BackColor="#F7F7DE" />
+                <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#FBFBF2" />
+                <SortedAscendingHeaderStyle BackColor="#848384" />
+                <SortedDescendingCellStyle BackColor="#EAEAD3" />
+                <SortedDescendingHeaderStyle BackColor="#575357" />
             </asp:GridView>
         </div>
     </form>

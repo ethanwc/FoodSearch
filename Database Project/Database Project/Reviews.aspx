@@ -42,83 +42,72 @@
 
     </script>
     <form id="form1" runat="server">
-            <div class="row">
-            <center>
-                <h1>Food Search</h1>
-                </center>
-                </div>   
         <div class="row">
             <center>
-                <h1>Highest Rated Restaurants</h1>
-                </center>
-                </div>   
-         <div align="center">
-             <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource3" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
-                 <Columns>
-                     <asp:BoundField DataField="RestName" HeaderText="RestName" SortExpression="RestName" />
-                     <asp:BoundField DataField="Total" HeaderText="Total" ReadOnly="True" SortExpression="Total" />
-                 </Columns>
-                 <FooterStyle BackColor="White" ForeColor="#000066" />
-                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
-                 <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
-                 <RowStyle ForeColor="#000066" />
-                 <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
-                 <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                 <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                 <SortedDescendingHeaderStyle BackColor="#00547E" />
-             </asp:GridView>
-             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT r.RestName, (re.CleanlinessR + re.FoodR + re.ServiceR + re.ValueR)/4.0 as Total
-FROM Restaurant r, Reviews re
-WHERE r.RestId = re.RestId
-ORDER BY Total DESC;"></asp:SqlDataSource>
-&nbsp;<center>
                 <h1>Reviews</h1>
-                </center>
-                </div>  
+                <p>  
 
-            <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="RestName" DataValueField="RestId">
+            <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" DataSourceID="source_selectreviews" DataTextField="RestName" DataValueField="RestId">
             </asp:DropDownList>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Restaurant]"></asp:SqlDataSource>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Username,RestId" DataSourceID="SqlDataSource2" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
-                <Columns>
-                    <asp:BoundField DataField="Username" HeaderText="Username" ReadOnly="True" SortExpression="Username" />
-                    <asp:BoundField DataField="RestId" HeaderText="RestId" ReadOnly="True" SortExpression="RestId" />
-                    <asp:BoundField DataField="CleanlinessR" HeaderText="CleanlinessR" SortExpression="CleanlinessR" />
-                    <asp:BoundField DataField="CleanlinessNote" HeaderText="CleanlinessNote" SortExpression="CleanlinessNote" />
-                    <asp:BoundField DataField="FoodR" HeaderText="FoodR" SortExpression="FoodR" />
-                    <asp:BoundField DataField="FoodNote" HeaderText="FoodNote" SortExpression="FoodNote" />
-                    <asp:BoundField DataField="ServiceR" HeaderText="ServiceR" SortExpression="ServiceR" />
-                    <asp:BoundField DataField="ServiceNote" HeaderText="ServiceNote" SortExpression="ServiceNote" />
-                    <asp:BoundField DataField="ValueR" HeaderText="ValueR" SortExpression="ValueR" />
-                    <asp:BoundField DataField="ValueNote" HeaderText="ValueNote" SortExpression="ValueNote" />
-                </Columns>
-                <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
-                <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
-                <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F7F7F7" />
-                <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-                <SortedDescendingCellStyle BackColor="#E5E5E5" />
-                <SortedDescendingHeaderStyle BackColor="#242121" />
-            </asp:GridView>
-            <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-            <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-           <center>
-                <h1>Leave a review</h1>
-                </center>
-                </div>   
-            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Reviews] WHERE ([RestId] = @RestId)">
+            <asp:SqlDataSource ID="source_selectreviews" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Restaurant]" OnSelecting="source_browsereviews_Selecting"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="source_viewreviews" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Username as 'Username', CleanlinessR as 'Cleanliness Quality', CleanlinessNote as 'Cleanliness Note', FoodR as 'Food Quality', FoodNote as 'Food Note', ServiceR as 'Service Quality', ServiceNote as 'Service Note', ValueR as 'Value Quality', ValueNote as 'Value Note' FROM [Reviews] WHERE ([RestId] = @RestId);
+">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DropDownList1" Name="RestId" PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:SqlDataSource>
+                    <asp:GridView ID="view_reviews" runat="server" AutoGenerateColumns="False" DataSourceID="source_viewreviews">
+                        <Columns>
+                            <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
+                            <asp:BoundField DataField="Cleanliness Quality" HeaderText="Cleanliness Quality" SortExpression="Cleanliness Quality" />
+                            <asp:BoundField DataField="Cleanliness Note" HeaderText="Cleanliness Note" SortExpression="Cleanliness Note" />
+                            <asp:BoundField DataField="Food Quality" HeaderText="Food Quality" SortExpression="Food Quality" />
+                            <asp:BoundField DataField="Food Note" HeaderText="Food Note" SortExpression="Food Note" />
+                            <asp:BoundField DataField="Service Quality" HeaderText="Service Quality" SortExpression="Service Quality" />
+                            <asp:BoundField DataField="Service Note" HeaderText="Service Note" SortExpression="Service Note" />
+                            <asp:BoundField DataField="Value Quality" HeaderText="Value Quality" SortExpression="Value Quality" />
+                            <asp:BoundField DataField="Value Note" HeaderText="Value Note" SortExpression="Value Note" />
+                        </Columns>
+                    </asp:GridView>
+           <center>
+                </center>
+                </p>
+                <h1>Highest Rated Restaurants</h1>
+                <p>
+           <center>
+                     <asp:SqlDataSource ID="source_highestreview" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT TOP 5 r.RestName as 'Restaurant', ROUND(((re.CleanlinessR + re.FoodR + re.ServiceR + re.ValueR)/5.0), 2) as 'Rating'
+FROM Restaurant r, Reviews re
+WHERE r.RestId = re.RestId
+ORDER BY Rating DESC;"></asp:SqlDataSource>
+                </center>
+                </p>
+                <h1>
+                     <asp:GridView ID="view_highestrated" runat="server" AutoGenerateColumns="False" DataSourceID="source_highestreview" OnSelectedIndexChanged="GridView2_SelectedIndexChanged">
+                         <Columns>
+                             <asp:BoundField DataField="Restaurant" HeaderText="Restaurant" SortExpression="Restaurant" />
+                             <asp:BoundField DataField="Rating" HeaderText="Rating" ReadOnly="True" SortExpression="Rating" />
+                         </Columns>
+                     </asp:GridView>
+                     </h1>
+                </center>
+                </div>   
+         <div align="center">
+             <center>
+                <h1>&nbsp;</h1>
+                </center>
+                </div>  
+
+            <center>
+                <h1>Leave a review</h1>
+                <p>
             <asp:DropDownList ID="DropDownList2" runat="server" Height="16px" DataSourceID="SqlDataSource4" DataTextField="RestName" DataValueField="RestId">
             </asp:DropDownList>
             <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Restaurant]"></asp:SqlDataSource>
             <p>
-                <asp:TextBox ID="CleanNote" runat="server"></asp:TextBox>
+            <asp:Label ID="CleanLabel" runat="server" Text="Cleanliness"></asp:Label>
+                    </p>
+            <p>
+                <asp:TextBox ID="CleanNote" runat="server" Height="80px" Width="400px" TextMode="MultiLine"></asp:TextBox>
                 <asp:DropDownList ID="CleanRating" runat="server" OnSelectedIndexChanged="DropDownList6_SelectedIndexChanged">
                     <asp:ListItem Value="1">1</asp:ListItem>
                     <asp:ListItem Value="2">2</asp:ListItem>
@@ -127,7 +116,10 @@ ORDER BY Total DESC;"></asp:SqlDataSource>
                     <asp:ListItem Value="5">5</asp:ListItem>
                 </asp:DropDownList>
             </p>
-                <asp:TextBox ID="FoodNote" runat="server"></asp:TextBox>
+            <p>
+            <asp:Label ID="FoodLabel" runat="server" Text="Food"></asp:Label>
+                    </p>
+                <asp:TextBox ID="FoodNote" runat="server" Height="80px" Width="400px" TextMode="MultiLine"></asp:TextBox>
                 <asp:DropDownList ID="FoodRating" runat="server">
                      <asp:ListItem Value="1">1</asp:ListItem>
                     <asp:ListItem Value="2">2</asp:ListItem>
@@ -136,7 +128,10 @@ ORDER BY Total DESC;"></asp:SqlDataSource>
                     <asp:ListItem Value="5">5</asp:ListItem>
                 </asp:DropDownList>
                 <p>
-                <asp:TextBox ID="ServiceNote" runat="server"></asp:TextBox>
+            <asp:Label ID="ServiceLabel" runat="server" Text="Service"></asp:Label>
+                    </p>
+                <p>
+                <asp:TextBox ID="ServiceNote" runat="server" Height="80px" Width="400px" TextMode="MultiLine"></asp:TextBox>
                 <asp:DropDownList ID="ServiceRating" runat="server">
                      <asp:ListItem Value="1">1</asp:ListItem>
                     <asp:ListItem Value="2">2</asp:ListItem>
@@ -145,7 +140,10 @@ ORDER BY Total DESC;"></asp:SqlDataSource>
                     <asp:ListItem Value="5">5</asp:ListItem>
                 </asp:DropDownList>
                 </p>
-                <asp:TextBox ID="ValueNote" runat="server"></asp:TextBox>
+            <p>
+                <asp:Label ID="ValueLabel" runat="server" Text="Value"></asp:Label>
+                    </p>
+                <asp:TextBox ID="ValueNote" runat="server" Height="80px" Width="400px" TextMode="MultiLine"></asp:TextBox>
                 <asp:DropDownList ID="ValueRating" runat="server">
                      <asp:ListItem Value="1">1</asp:ListItem>
                     <asp:ListItem Value="2">2</asp:ListItem>
@@ -153,10 +151,14 @@ ORDER BY Total DESC;"></asp:SqlDataSource>
                     <asp:ListItem Value="4">4</asp:ListItem>
                     <asp:ListItem Value="5">5</asp:ListItem>
                 </asp:DropDownList>
+                <br />
                 <p>
             <asp:TextBox ID="Submitted" runat="server" Visible="false" Text="Review Submitted" OnTextChanged="TextBox4_TextChanged"></asp:TextBox>
-                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit" />
+                <asp:Button ID="button_submitreview" runat="server" OnClick="Button1_Click" Text="Submit" />
             </p>
+                </p>
+                </center>
+                </div>   
     </form>
     <p>
         &nbsp;</p>

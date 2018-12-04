@@ -29,7 +29,7 @@ public partial class Reviews : System.Web.UI.Page
 
         cmd.ExecuteNonQuery();
         con.Close();
-        Button1.Visible = false;
+        button_submitreview.Visible = false;
         Submitted.Visible = true;        
     }
 
@@ -65,6 +65,16 @@ public partial class Reviews : System.Web.UI.Page
     }
 
     protected void TextBox4_TextChanged1(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void source_browsereviews_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+    {
+
+    }
+
+    protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
     {
 
     }
