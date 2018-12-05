@@ -62,7 +62,15 @@
                     <div style="white-space: nowrap;">
 
 
-                        <asp:TextBox class="form-control" placeholder="Search" ID="search_text" runat="server"></asp:TextBox>
+                        <asp:TextBox class="form-control" placeholder="Search" ID="search_text" runat="server" OnTextChanged="search_text_TextChanged"></asp:TextBox>
+
+
+
+            <asp:RadioButtonList ID="RadioButtonList1" runat="server" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
+            <asp:ListItem Value="0" Selected="true">Name</asp:ListItem>
+            <asp:ListItem Value="1">Price</asp:ListItem>
+            <asp:ListItem Value="2">Restaurant</asp:ListItem>
+            </asp:RadioButtonList>
 
 
 
@@ -72,24 +80,20 @@
             </div>
 
 
-
-
-
             <asp:Button class="invisible" ID="search_button" runat="server" OnClick="Button1_Click" Text="Search" />
         </p>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT mi.ItemName as 'Item', r.RestName as 'Restaurant', mi.Calories, mi.Price, mi.ItemDescription as 'Description'
 FROM MenuItem mi, Restaurant r, Menu m
 WHERE ([ItemName] LIKE '%' + @ItemName + '%')
 AND r.RestId = M.MenuId 
-AND m.MenuId = mi.MenuId;
-">
+AND m.MenuId = mi.MenuId;">
             <SelectParameters>
                 <asp:ControlParameter ControlID="search_text" Name="ItemName" PropertyName="Text" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>
  
         <div class="col-xs-12" style="background: white; border-color: white" align="center">
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="Black" GridLines="Vertical">
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="Black" GridLines="Vertical" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
                     <asp:BoundField DataField="Item" HeaderText="Item" SortExpression="Item" />
