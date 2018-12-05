@@ -77,7 +77,6 @@
                 <ul class="nav navbar-nav">
                     <li><a href="Login.aspx">Login</a></li>
                     <li><a href="Search.aspx">Search</a></li>
-                    <li><a href="about.html">About</a></li>
                     <li><a href="Reviews.aspx">Reviews</a></li>
                 </ul>
             </div>
@@ -115,6 +114,11 @@
                     <div class="form-group">
                         <center>
                             <asp:TextBox ID="login_textfield_username" runat="server" placeholder="Username"></asp:TextBox>
+                                   </center>
+                    </div>
+                       <div class="form-group">
+                        <center>
+
                             <asp:Label ID="login_label_error" runat="server" ForeColor="Red"></asp:Label>
                         </center>
                     </div>

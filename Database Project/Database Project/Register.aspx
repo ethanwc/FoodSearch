@@ -73,6 +73,10 @@
                 <div class="form-group">
                     <center>
                         <asp:TextBox ID="register_username" runat="server" OnTextChanged="TextBox1_TextChanged" placeholder="Username"></asp:TextBox>
+                              </center>
+                </div>
+                           <div class="form-group">
+                    <center>
                         <asp:Label ID="register_label_username" runat="server" ForeColor="Red"></asp:Label>
                     </center>
                 </div>
@@ -80,6 +84,10 @@
                     <center>
 
                         <asp:TextBox ID="register_password" runat="server" TextMode="Password" placeholder="Password"></asp:TextBox>
+                              </center>
+                </div>
+                           <div class="form-group">
+                    <center>
                         <asp:Label ID="register_label_password" runat="server" ForeColor="Red"></asp:Label>
                     </center>
 

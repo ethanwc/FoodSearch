@@ -4,16 +4,15 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li><a href="Login.aspx">Login</a></li>
-                <li><a href="Search.aspx">Search</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="Reviews.aspx">Reviews</a></li>
-            </ul>
-        </div>
-    </nav>
+            <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li><a href="Login.aspx">Login</a></li>
+                    <li><a href="Search.aspx">Search</a></li>
+                    <li><a href="Reviews.aspx">Reviews</a></li>
+                </ul>
+            </div>
+        </nav>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://getbootstrap.com.vn/examples/equal-height-columns/equal-height-columns.css" />
 

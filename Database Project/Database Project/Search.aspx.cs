@@ -34,20 +34,26 @@ public partial class Search : System.Web.UI.Page
                      "FROM MenuItem mi, Restaurant r, Menu m WHERE(r.RestName LIKE '%' + @ItemName + '%') AND r.RestId = M.MenuId AND m.MenuId = mi.MenuId; ";
     }
 
-        if (RadioButtonList1.SelectedItem.Text == "Price")
-        { 
-            SqlDataSource1.SelectCommand = "SELECT DISTINCT mi.ItemName as 'Item', r.RestName as 'Restaurant', mi.Calories, mi.Price, mi.ItemDescription as 'Description' FROM MenuItem mi, Restaurant r, Menu m " +
-                "WHERE(mi.price <= " + double.Parse(search_text.Text) + ") AND r.RestId = M.MenuId AND m.MenuId = mi.MenuId ORDER BY Price DESC;";
-                       //double.Parse(search_text.Text) + ") AND r.RestId = M.MenuId AND m.MenuId = mi.MenuId; ";
+        else if (RadioButtonList1.SelectedItem.Text == "Price")
+        {
+            double val;
+            if (double.TryParse(search_text.Text, out val)) {
+                SqlDataSource1.SelectCommand = "SELECT DISTINCT mi.ItemName as 'Item', r.RestName as 'Restaurant', mi.Calories, mi.Price, mi.ItemDescription as 'Description' FROM MenuItem mi, Restaurant r, Menu m " +
+                    "WHERE(mi.price <= " + val + ") AND r.RestId = M.MenuId AND m.MenuId = mi.MenuId ORDER BY Price DESC;";
+            }
         }
 
-        if (RadioButtonList1.SelectedItem.Text == "Restaurant")
+        else if (RadioButtonList1.SelectedItem.Text == "Restaurant")
         {
             SqlDataSource1.SelectCommand = "SELECT mi.ItemName as 'Item', r.RestName as 'Restaurant', mi.Calories, " +
                 "mi.Price, mi.ItemDescription as 'Description' " +
                 "FROM MenuItem mi, Restaurant r, Menu m " +
                 "WHERE(r.RestName LIKE '%' + @ItemName + '%') AND r.RestId = M.MenuId AND m.MenuId = mi.MenuId";
         }
+
+     
+
+        GridView1.DataBind();
     }
 
     protected void search_text_TextChanged(object sender, EventArgs e)
