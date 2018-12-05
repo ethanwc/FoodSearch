@@ -76,7 +76,7 @@
                 <h1>Highest Rated Restaurants</h1>
                 <p>
            <center>
-                     <asp:SqlDataSource ID="source_highestreview" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT TOP 5 r.RestName as 'Restaurant', ROUND(((re.CleanlinessR + re.FoodR + re.ServiceR + re.ValueR)/5.0), 2) as 'Rating'
+                     <asp:SqlDataSource ID="source_highestreview" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT TOP 5 r.RestName as 'Restaurant', ROUND(((re.CleanlinessR + re.FoodR + re.ServiceR + re.ValueR)/4.0), 2) as 'Rating'
 FROM Restaurant r, Reviews re
 WHERE r.RestId = re.RestId
 ORDER BY Rating DESC;"></asp:SqlDataSource>
