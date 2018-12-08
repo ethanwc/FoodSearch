@@ -1,33 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Text.RegularExpressions;
 
-public partial class Default2 : System.Web.UI.Page {
+/// <summary>
+/// Controls the registration controls
+/// Josh Lichty
+/// </summary>
+public partial class Register : System.Web.UI.Page {
 
-    protected void Page_Load(object sender, EventArgs e) {
-
-    }
-
-    protected void TextBox1_TextChanged(object sender, EventArgs e) {
-
-    }
-
+    /// <summary>
+    /// Register a new user.
+    /// </summary>
+    /// <param name="sender">The object that triggered the method</param>
+    /// <param name="e">Event arguments</param>
     protected void register_submit_Click(object sender, EventArgs e) {
         if (IsPostBack) {
-
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             conn.Open();
             string cmdStr;
             SqlCommand cmd;
 
             bool valid = true;
-
 
             // Validate username
             if (register_username.Text.Length < 6) {
@@ -48,8 +42,6 @@ public partial class Default2 : System.Web.UI.Page {
                     register_label_username.Text = "Username may contain only alphanumeric characters.";
                     valid = false;
                 }
-
-
             }
 
             // Validate password
@@ -78,6 +70,7 @@ public partial class Default2 : System.Web.UI.Page {
                 }
             }
 
+            // Insert the new customer
             if (valid) {
                 cmdStr = "INSERT INTO customer VALUES ('" + register_username.Text + "', '" + register_password.Text + "', '" + register_display.Text + "');";
                 cmd = new SqlCommand(cmdStr, conn);
@@ -88,6 +81,11 @@ public partial class Default2 : System.Web.UI.Page {
         }
     }
 
+    /// <summary>
+    /// Ensure a string only contains alphanumeric characters
+    /// </summary>
+    /// <param name="input">The string to check</param>
+    /// <returns>Whether the string fits the criteria</returns>
     private bool ValidateString(string input) {
         try {
             return Regex.IsMatch(input, "^[a-zA-Z0-9]*$");
@@ -95,7 +93,11 @@ public partial class Default2 : System.Web.UI.Page {
             return false;
         }
     }
-
+    /// <summary>
+    /// Redirects to the login page.
+    /// </summary>
+    /// <param name="sender">The object that triggered the method</param>
+    /// <param name="e">Event arguments</param>
     protected void register_button_cancel_Click(object sender, EventArgs e) {
         Response.Redirect("Login.aspx");
     }

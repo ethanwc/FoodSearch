@@ -1,22 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Security;
 using System.Text.RegularExpressions;
 
+/// <summary>
+/// Controls the login controls.
+/// Josh Lichty
+/// </summary>
 public partial class Login : System.Web.UI.Page {
 
+    /// <summary>
+    /// Sign out
+    /// </summary>
+    /// <param name="sender">The object that triggered the method</param>
+    /// <param name="e">Event arguments</param>
     protected void Page_Load(object sender, EventArgs e) {
         if (!Context.User.Identity.IsAuthenticated) {
             FormsAuthentication.SignOut();
         }
     }
 
+    /// <summary>
+    /// Validate the username and password and log in.
+    /// </summary>
+    /// <param name="sender">The object that triggered the method</param>
+    /// <param name="e">Event arguments</param>
     protected void Login_button_login_Click(object sender, EventArgs e) {
         if (IsPostBack) {
             if (ValidateString(login_textfield_username.Text) && ValidateString(login_textfield_password.Text)) {
@@ -44,6 +53,11 @@ public partial class Login : System.Web.UI.Page {
 
     }
 
+    /// <summary>
+    /// Ensure that a string contains only alphanumeric characters.
+    /// </summary>
+    /// <param name="input">The string to check</param>
+    /// <returns>Whether the string is valid</returns>
     private bool ValidateString(string input) {
         try {
             return Regex.IsMatch(input, "^[a-zA-Z0-9]*$");
@@ -52,15 +66,12 @@ public partial class Login : System.Web.UI.Page {
         }
     }
 
-
+    /// <summary>
+    /// Redirects to the registration page.
+    /// </summary>
+    /// <param name="sender">The object that triggered the method</param>
+    /// <param name="e">Event arguments</param>
     protected void Login_button_register_Click(object sender, EventArgs e) {
         Response.Redirect("Register.aspx");
     }
 }
-
-/*        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-*/

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AddMenuItem.aspx.cs" Inherits="Default2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AddMenuItem.aspx.cs" Inherits="AddMenuItem" %>
 
 <!DOCTYPE html>
 
@@ -15,10 +15,12 @@
         .auto-style3 {
             height: 23px;
             width: 350px;
-        }
+                text-align: right;
+            }
         .auto-style4 {
             width: 350px;
-        }
+                text-align: right;
+            }
         .auto-style5 {
             height: 23px;
             width: 227px;
@@ -37,6 +39,11 @@
         .auto-style9 {
             height: 26px;
         }
+            .auto-style10 {
+                width: 350px;
+                height: 26px;
+                text-align: right;
+            }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="http://getbootstrap.com.vn/examples/equal-height-columns/equal-height-columns.css" />
@@ -77,7 +84,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style7">Calories</td>
+                    <td class="auto-style10">Calories</td>
                     <td class="auto-style8">
                         <asp:TextBox ID="txt_calories" runat="server" Width="180px"></asp:TextBox>
                     </td>
@@ -86,7 +93,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style7">Price</td>
+                    <td class="auto-style10">Price</td>
                     <td class="auto-style8">
                         <asp:TextBox ID="txt_price" runat="server" Width="180px"></asp:TextBox>
                     </td>

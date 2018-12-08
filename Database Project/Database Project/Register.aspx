@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="Default2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="Register" %>
 
 <!DOCTYPE html>
 
@@ -45,7 +45,7 @@
         <div class="col-md-4 col-md-offset-4 rounded" style="background: white; border-color: white">
             <div class="form-group">
                 <center>
-                    <asp:TextBox ID="register_username" runat="server" OnTextChanged="TextBox1_TextChanged" placeholder="Username"></asp:TextBox>
+                    <asp:TextBox ID="register_username" runat="server" placeholder="Username"></asp:TextBox>
                 </center>
             </div>
             <div class="form-group">

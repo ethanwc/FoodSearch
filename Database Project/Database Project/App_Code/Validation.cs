@@ -6,14 +6,19 @@ using System.Web;
 using System.Web.UI.WebControls;
 
 /// <summary>
-/// Summary description for Validation
+/// Validates inputs before use in SQL commands.
 /// </summary>
 public class Validation {
 
-    public static bool ValidateString(string input, string name, int min, Label label) {
-        return ValidateString(input, name, min, Global.MaxChars, label);
-    }
-
+    /// <summary>
+    /// Ensures that a string is between the min and max length, contains no special characters, and sends feedback
+    /// </summary>
+    /// <param name="input">The source of the input</param>
+    /// <param name="name">A description of the input for use in feedback</param>
+    /// <param name="min">The min length</param>
+    /// <param name="max">The max length</param>
+    /// <param name="label">The destination of the feedback</param>
+    /// <returns>Whether the string is a valid input</returns>
     public static bool ValidateString(string input, string name, int min, int max, Label label) {
 
         bool valid = true;
@@ -52,6 +57,20 @@ public class Validation {
         return valid;
     }
 
+    // See previous overload ^
+    public static bool ValidateString(string input, string name, int min, Label label) {
+        return ValidateString(input, name, min, Global.MaxChars, label);
+    }
+
+    /// <summary>
+    /// Ensures that an int is between the min and max length, contains only numerals, and sends feedback
+    /// </summary>
+    /// <param name="input">The source of the input</param>
+    /// <param name="name">A description of the input for use in feedback</param>
+    /// <param name="min">The min length</param>
+    /// <param name="max">The max length</param>
+    /// <param name="label">The destination of the feedback</param>
+    /// <returns>Whether the int is a valid input</returns>
     public static bool ValidateInt(string input, string name, int min, int max, Label label) {
 
         bool valid = true;

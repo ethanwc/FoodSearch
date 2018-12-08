@@ -25,11 +25,11 @@ public partial class Search : System.Web.UI.Page
     protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
     {   
         //If selection is name, search for food
-        if (RadioButtonList1.SelectedItem.Text == "Name") {
+        if (RadioButtonList1.SelectedItem.Text == "Item Name") {
             SqlDataSource1.SelectCommand = "SELECT mi.ItemName as 'Item', r.RestName as 'Restaurant', mi.Calories, mi.Price as 'Price', mi.ItemDescription as 'Description' " +
                                            "FROM MenuItem mi, Restaurant r, Menu m WHERE(r.RestName LIKE '%' + @ItemName + '%') AND r.RestId = M.MenuId AND m.MenuId = mi.MenuId; ";
             //if selection is price, find items less than or equal to specific price
-        } else if (RadioButtonList1.SelectedItem.Text == "Price") {
+        } else if (RadioButtonList1.SelectedItem.Text == "Max Price") {
             double val;
             if (double.TryParse(search_text.Text, out val)) {
                 SqlDataSource1.SelectCommand = "SELECT DISTINCT mi.ItemName as 'Item', r.RestName as 'Restaurant', mi.Calories, mi.Price, mi.ItemDescription as 'Description' " +

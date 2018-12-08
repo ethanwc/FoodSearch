@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AddMenu.aspx.cs" Inherits="Default2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AddMenu.aspx.cs" Inherits="AddMenu" %>
 
 <!DOCTYPE html>
 
@@ -15,9 +15,11 @@
         .auto-style3 {
             height: 23px;
             width: 350px;
+            text-align: right;
         }
         .auto-style4 {
             width: 350px;
+            text-align: right;
         }
         .auto-style5 {
             height: 23px;
@@ -36,6 +38,11 @@
         }
         .auto-style9 {
             height: 26px;
+        }
+        .auto-style10 {
+            width: 350px;
+            height: 26px;
+            text-align: right;
         }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -77,7 +84,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style7">End Time</td>
+                    <td class="auto-style10">End Time</td>
                     <td class="auto-style8">
                         <asp:TextBox ID="txt_endTime" runat="server" Width="180px"></asp:TextBox>
                     </td>

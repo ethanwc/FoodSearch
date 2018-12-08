@@ -1,34 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
+/// <summary>
+/// Controls the account page 
+/// (shouldn't be a partial class of search, 
+/// but I noticed it too late and don't have time to figure out how to fix it)
+/// </summary>
 public partial class Search : System.Web.UI.Page
 {
-
-    bool addingPref;
-    bool addingAllergy;
-
+    // The connection to the database
     SqlConnection conn;
+    // The command to run
     SqlCommand cmd;
+    // A string to hold the command
     string cmdStr;
-    int i;
 
+    /// <summary>
+    /// Initializes the connection and displays personalized user data.
+    /// </summary>
+    /// <param name="sender">The object that triggered the method</param>
+    /// <param name="e">Event arguments</param>
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Context.User.Identity.IsAuthenticated) {
             Response.Redirect("Login.aspx");
         }
-        i = 0;
         conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-
-        addingPref = false;
-        addingAllergy = false;
-
+        
         string header = Global.DisplayName;
         if (header.EndsWith("s")) {
             header += "' Profile";
@@ -37,9 +37,13 @@ public partial class Search : System.Web.UI.Page
         }
         lbl_welcome.Text = header;
         lbl_username.Text = Context.User.Identity.Name;
-
     }
 
+    /// <summary>
+    /// Add Preferences
+    /// </summary>
+    /// <param name="sender">The object that triggered the method</param>
+    /// <param name="e">Event arguments</param>
     protected void btn_addPref_Click(object sender, EventArgs e) {
         txt_cuisine.Visible = true;
         txt_maxprice.Visible = true;
@@ -52,6 +56,11 @@ public partial class Search : System.Web.UI.Page
         btn_submitPref.Focus();
     }
 
+    /// <summary>
+    /// Submit Preferences
+    /// </summary>
+    /// <param name="sender">The object that triggered the method</param>
+    /// <param name="e">Event arguments</param>
     protected void btn_submitPref_Click(object sender, EventArgs e) {
         bool valid = Validation.ValidateString(txt_cuisine.Text, "Food Type", 6, lbl_cuisine);
         if (valid) valid = Validation.ValidateInt(txt_maxprice.Text, "Max price", 0, 6, lbl_maxprice);
@@ -76,6 +85,11 @@ public partial class Search : System.Web.UI.Page
         }
     }
 
+    /// <summary>
+    /// Add Allergy
+    /// </summary>
+    /// <param name="sender">The object that triggered the method</param>
+    /// <param name="e">Event arguments</param>
     protected void btn_addAllergy_Click(object sender, EventArgs e) {
         txt_allergy.Visible = true;
         rb_severity.Visible = true;
@@ -90,6 +104,11 @@ public partial class Search : System.Web.UI.Page
         btn_submitAllergy.Focus();
     }
 
+    /// <summary>
+    /// Submit Allergy
+    /// </summary>
+    /// <param name="sender">The object that triggered the method</param>
+    /// <param name="e">Event arguments</param>
     protected void btn_submitAllergy_Click(object sender, EventArgs e) {
         bool valid = Validation.ValidateString(txt_allergy.Text, "Allergy", 3, lbl_allergy);
         if (valid) {
@@ -113,6 +132,11 @@ public partial class Search : System.Web.UI.Page
         }
     }
 
+    /// <summary>
+    /// Add Party
+    /// </summary>
+    /// <param name="sender">The object that triggered the method</param>
+    /// <param name="e">Event arguments</param>
     protected void btn_createParty_Click(object sender, EventArgs e) {
         btn_createParty.Visible = false;
         btn_join.Visible = false;
@@ -127,6 +151,11 @@ public partial class Search : System.Web.UI.Page
         btn_partySubmit.Focus();
     }
 
+    /// <summary>
+    /// Submit Party
+    /// </summary>
+    /// <param name="sender">The object that triggered the method</param>
+    /// <param name="e">Event arguments</param>
     protected void btn_partySubmit_Click(object sender, EventArgs e) {
         bool valid = Validation.ValidateString(txt_partyName.Text, "PartyName", 2, lbl_partyname);
         if (valid) {
@@ -153,6 +182,11 @@ public partial class Search : System.Web.UI.Page
         }
     }
 
+    /// <summary>
+    /// Join an existing party.
+    /// </summary>
+    /// <param name="sender">The object that triggered the method</param>
+    /// <param name="e">Event arguments</param>
     protected void btn_join_Click(object sender, EventArgs e) {
         btn_createParty.Visible = false;
         btn_join.Visible = false;
@@ -171,6 +205,11 @@ public partial class Search : System.Web.UI.Page
         btn_searchpartysubmit.Focus();
     }
 
+    /// <summary>
+    /// Search for a party.
+    /// </summary>
+    /// <param name="sender">The object that triggered the method</param>
+    /// <param name="e">Event arguments</param>
     protected void btn_searchpartysubmit_Click(object sender, EventArgs e) {
         bool valid = Validation.ValidateString(txt_search_party.Text, "Search parameter", 0, lbl_search_party);
         if (valid) valid = Validation.ValidateString(txt_search_user.Text, "Search parameter", 0, lbl_search_user);
@@ -181,6 +220,11 @@ public partial class Search : System.Web.UI.Page
         }
     }
 
+    /// <summary>
+    /// Select a party.
+    /// </summary>
+    /// <param name="sender">The object that triggered the method</param>
+    /// <param name="e">Event arguments</param>
     protected void btn_partySearch_Click(object sender, EventArgs e) {
         bool success = false;
         conn.Open();

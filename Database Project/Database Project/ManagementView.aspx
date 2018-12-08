@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ManagementView.aspx.cs" Inherits="CreateMenu" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ManagementView.aspx.cs" Inherits="ManagementView" %>
 
 <!DOCTYPE html>
 
