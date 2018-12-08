@@ -50,7 +50,6 @@ public partial class CreateMenu : System.Web.UI.Page {
     protected void SelectMenu(object sender, EventArgs e) {
         ShowMenus(false);
         ShowMenuItems(true);
-        Response.Write(((Button)sender).CommandArgument);
         lbl_selectedMenu.Text = ((Button)sender).CommandArgument;
     }
 

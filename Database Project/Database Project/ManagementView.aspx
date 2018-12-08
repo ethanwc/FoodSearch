@@ -4,22 +4,40 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Food Search</title>
     <style type="text/css">
         .auto-style1 {
             text-align: left;
         }
+        .auto-style2 {
+            font-size: large;
+        }
     </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="http://getbootstrap.com.vn/examples/equal-height-columns/equal-height-columns.css" />
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
 <body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a href="Login.aspx">Logout</a></li>
+                <li><a href="Account.aspx">My Account</a></li>
+                <li><a href="Search.aspx">Search</a></li>
+                <li><a href="Reviews.aspx">Reviews</a></li>
+                <li><a href="ManagementView.aspx">Management View</a></li>
+            </ul>
+        </div>
+    </nav>
     <form id="form1" runat="server">
         <div class="auto-style1">
-            Menu Builder<br />
+            <strong><span class="auto-style2">Menu Builder</span></strong><br />
             <br />
             <asp:Label ID="label_selectRestaurant" runat="server" Text="Select Restaurant" Font-Bold="True"></asp:Label>
             <br />
-            <asp:TextBox ID="txt_searchbar" runat="server" Width="180px">Blue</asp:TextBox>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:FoodSearch %>" SelectCommand="SELECT * FROM [Restaurant]"></asp:SqlDataSource>
+            <asp:TextBox ID="txt_searchbar" runat="server" Width="180px"></asp:TextBox>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Restaurant]"></asp:SqlDataSource>
             <asp:Button ID="btn_search" runat="server" OnClick="CreateMenu_search_Click" Text="Search" Width="180px" />
             <asp:ListView ID="list_restaurantList" runat="server" DataSourceID="SqlDataSource2" EnableTheming="True" Visible="False">
                 <EmptyDataTemplate>
@@ -101,14 +119,14 @@
             
 
 
-            <asp:SqlDataSource ID="MenuSelection" runat="server" ConnectionString="<%$ ConnectionStrings:FoodSearch %>" SelectCommand="SELECT *
+            <asp:SqlDataSource ID="MenuSelection" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT *
 FROM menu
 WHERE restid = @restid">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="lbl_selectedRestaurant" Name="restid" PropertyName="Text" />
                 </SelectParameters>
             </asp:SqlDataSource>
-            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:FoodSearch %>" SelectCommand="SELECT RestName, RestId FROM Restaurant WHERE (RestName LIKE '%' + @search + '%')">
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT RestName, RestId FROM Restaurant WHERE (RestName LIKE '%' + @search + '%')">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="txt_searchbar" DefaultValue="" Name="search" PropertyName="Text" />
                 </SelectParameters>
@@ -143,7 +161,7 @@ WHERE restid = @restid">
             
 
 
-            <asp:SqlDataSource ID="MenuItemSelection" runat="server" ConnectionString="<%$ ConnectionStrings:FoodSearch %>" SelectCommand="SELECT * 
+            <asp:SqlDataSource ID="MenuItemSelection" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * 
 FROM menuItem
 WHERE menuid = @menuid">
                 <SelectParameters>

@@ -80,7 +80,6 @@ public partial class Default2 : System.Web.UI.Page {
 
             if (valid) {
                 cmdStr = "INSERT INTO customer VALUES ('" + register_username.Text + "', '" + register_password.Text + "', '" + register_display.Text + "');";
-                Response.Write(cmdStr);
                 cmd = new SqlCommand(cmdStr, conn);
                 cmd.ExecuteNonQuery();
                 Response.Redirect("Login.aspx");

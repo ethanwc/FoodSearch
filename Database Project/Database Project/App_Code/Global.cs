@@ -11,6 +11,7 @@ public class Global {
     private static int _maxChars = 40;
     private static int _restaurant;
     private static int _menu;
+    private static string _displayName;
 
     public static int Restaurant {
         get { return _restaurant; }
@@ -24,6 +25,11 @@ public class Global {
 
     public static int MaxChars {
         get { return _maxChars; }
+    }
+
+    public static string DisplayName {
+        get { return _displayName; }
+        set { _displayName = value; }
     }
 
 }
